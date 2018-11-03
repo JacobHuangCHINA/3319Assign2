@@ -14,6 +14,6 @@ CREATE TABLE Agent (AgentID CHAR(2), FirstName VARCHAR(30), LastName VARCHAR(30)
 
 CREATE TABLE Customer (CustomerID CHAR(2), firstname VARCHAR(30), lastname VARCHAR(30), city VARCHAR(15), phoneNum VARCHAR(8), PRIMARY KEY (CustomerID) FOREIGN KEY (AgentID) REFERENCES Agent(AgentID));
 
-CREATE TABLE Product (ProductID CHAR(2), description VARCHAR(20), Cost VARCHAR(6), City VARCHAR(15), Commission VARCHAR(2), PRIMARY KEY (AgentID));
+CREATE TABLE Product (ProductID CHAR(2), description VARCHAR(20), Cost VARCHAR(9), City VARCHAR(15), Commission VARCHAR(2), PRIMARY KEY (AgentID));
 
 SHOW tables;
