@@ -1,3 +1,4 @@
+USE yhaun385assign2db;
 -- SHOW tables
 SELECT * FROM Agents;
 SELECT * FROM Customers;
