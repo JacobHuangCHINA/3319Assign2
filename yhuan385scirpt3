@@ -1,6 +1,6 @@
+USE yhuan385assign2db;
 -- Query1
-USE Products;
-SELECT description FROM Products；
+SELECT description FROM Products;
 
 -- Query2
 SELECT DISTINCT City FROM Customers;
@@ -27,19 +27,19 @@ SELECT Quantity AS "Homer's Total Purchases" FROM Purchase WHERE CustomerID=(SEL
 SELECT FirstName, LastName, Quantity FROM Customers,Purchase WHERE (Customers.CustomerID = Purchase.CustomerID);
 
 -- Query10
-SELECT Description,Quantity FROM Products,Purchase WHERE NOT Products.ProductID = Purchase.ProductID;
+SELECT Description,Products.Quantity FROM Products,Purchase WHERE NOT Products.ProductID = Purchase.ProductID;
 
 -- Query11
-SELECT Description,Quantity FROM Products WHERE ProductID=(SELECT ProductID FROM Purchase WHERE NOT CustomerID=(SELECT FirstName,LastName FROM Customers WHERE FirstName = 'Fred' AND LastName = 'Flintstone'));
+SELECT Description,Quantity FROM Products WHERE ProductID NOT IN (SELECT Purchase.ProductID FROM Purchase, Customers WHERE Purchase.CustomerID = Customers.CustomerID AND Customers.FirstName = 'Fred' AND LastName = 'Flintstone');
 
 -- Query12
-SELECT Customers.FirstName, Customers.LastName FROM Customers INNER JOIN Agents ON Customers.AgentID = Agents.AgentID AND Customers.City = Agents.City;
+SELECT Customers.FirstName, Customers.LastName, Agents.FirstName , Agents.LastName FROM Customers, Agents WHERE Customers.City = Agents.City;
 
 -- Query13
 SELECT SUM(Quantity) AS "Knee Pads Total Purchase" FROM Purchase WHERE ProductID = 78;
 
 -- Query14
-SELECT COUNT(Description) FROM Purchase GROUP By Description HAVING COUNT(Description) > 1;
+SELECT Description FROM Products WHERE ProductID=(SELECT ProductID FROM Purchase GROUP By ProductID HAVING COUNT(ProductID) > 3);
 
 -- Query15
-SELECT FirstName, LastName FROM Agents WHERE AgentID=(SELECT AgentID FROM Customers WHERE CustomerID=(SELECT CustomerID FROM Purchase WHERE ProductID = 78));
+SELECT FirstName, LastName FROM Agents WHERE AgentID IN (SELECT AgentID FROM Customers WHERE CustomerID IN (SELECT CustomerID FROM Purchase WHERE ProductID = 78));
