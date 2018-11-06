@@ -1,5 +1,9 @@
 Warning: Using a password on the command line interface can be insecure.
-ERROR 1050 (42S01) at line 9: Table 'Customer_View' already exists
+ERROR 1064 (42000) at line 13: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show views
+SELECT * FROM Customer_View
+
+--show spent more than 100
+SELECT * FR' at line 1
 --------------
 SELECT * FROM Agents
 --------------
@@ -53,7 +57,19 @@ CustomerID	ProductID	Quantity
 31	78	5
 31	99	5
 --------------
+drop view if exists Customer_View
+--------------
+
+--------------
 CREATE VIEW Customer_View AS
 SELECT Customers.FirstName, Customers.LastName, Products.Description, Products.Quantity, Products.Cost, Products.Quantity*Products.Cost AS TotalCost FROM Customers,Products,Purchase WHERE Purchase.ProductID = Products.ProductID AND Customers.CustomerID = Purchase.CustomerID ORDER BY Customers.LastName
+--------------
+
+--------------
+--show views
+SELECT * FROM Customer_View
+
+--show spent more than 100
+SELECT * FROM Customer_View WHERE TotalCost > 100
 --------------
 
