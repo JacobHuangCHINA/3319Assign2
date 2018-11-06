@@ -11,7 +11,7 @@ CREATE VIEW Customer_View AS
 SELECT Customers.FirstName, Customers.LastName, Products.Description, Products.Quantity, Products.Cost, Products.Quantity*Products.Cost AS TotalCost FROM Customers,Products,Purchase WHERE Purchase.ProductID = Products.ProductID AND Customers.CustomerID = Purchase.CustomerID ORDER BY Customers.LastName;
 
 --show views
-SELECT * FROM Customer_View
+SELECT * FROM Customer_View;
 
 --show spent more than 100
 SELECT * FROM Customer_View WHERE TotalCost > 100;
