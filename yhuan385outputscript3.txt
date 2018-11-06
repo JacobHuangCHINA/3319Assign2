@@ -1,0 +1,210 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SELECT description FROM Products
+--------------
+
+description
+banana
+apple
+Bike
+Socks
+Elbow pads
+Knee Pads
+Roller Blades
+Helmet
+--------------
+SELECT DISTINCT City FROM Customers
+--------------
+
+City
+Boston
+Springfield
+Kypto
+Providence
+--------------
+SELECT * FROM Agents ORDER BY City
+--------------
+
+AgentID	FirstName	LastName	City	Commission
+33	David	Letterman	Bedrock	100
+11	Regis	Philbin	Boston	33
+55	Yangzhe	Huang	Changsha	89
+22	Courtney	Cox	New York	25
+12	Rosie	Cox	Ottawa	50
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT FirstName, LastName FROM Customers WHERE City = "Springfield"
+--------------
+
+FirstName	LastName
+Monty	Burns
+Homer	Simpson
+Sideshow	Bob
+--------------
+SELECT LastName FROM Customers WHERE AgentID = 11
+--------------
+
+LastName
+Rubble
+Flintstone
+--------------
+SELECT Description FROM Products WHERE Description LIKE '%Pad%' OR Description LIKE '%pad'
+--------------
+
+Description
+Elbow pads
+Knee Pads
+--------------
+SELECT LastName,Quantity FROM Customers,Purchase WHERE Customers.CustomerID = Purchase.CustomerID
+--------------
+
+LastName	Quantity
+Griffens	19
+Flintstone	2
+Flintstone	2
+Simpson	14
+Simpson	10
+Simpson	20
+Bob	5
+Bob	5
+Bob	5
+Bob	5
+--------------
+SELECT Quantity AS "Homer's Total Purchases" FROM Purchase WHERE CustomerID=(SELECT CustomerID FROM Customers WHERE FirstName='Homer')
+--------------
+
+Homer's Total Purchases
+14
+10
+20
+--------------
+SELECT FirstName, LastName, Quantity FROM Customers,Purchase WHERE (Customers.CustomerID = Purchase.CustomerID)
+--------------
+
+FirstName	LastName	Quantity
+Peter	Griffens	19
+Fred	Flintstone	2
+Fred	Flintstone	2
+Homer	Simpson	14
+Homer	Simpson	10
+Homer	Simpson	20
+Sideshow	Bob	5
+Sideshow	Bob	5
+Sideshow	Bob	5
+Sideshow	Bob	5
+--------------
+SELECT Description,Products.Quantity FROM Products,Purchase WHERE NOT Products.ProductID = Purchase.ProductID
+--------------
+
+Description	Quantity
+banana	80
+apple	110
+Bike	200
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Knee Pads	70
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Elbow pads	120
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Elbow pads	120
+Roller Blades	89
+Helmet	30
+banana	80
+apple	110
+Bike	200
+Socks	100
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+banana	80
+apple	110
+Bike	200
+Socks	100
+Elbow pads	120
+Knee Pads	70
+Roller Blades	89
+--------------
+SELECT Description,Quantity FROM Products WHERE ProductID NOT IN (SELECT Purchase.ProductID FROM Purchase, Customers WHERE Purchase.CustomerID = Customers.CustomerID AND Customers.FirstName = 'Fred' AND LastName = 'Flintstone')
+--------------
+
+Description	Quantity
+banana	80
+apple	110
+Bike	200
+Socks	100
+Roller Blades	89
+Helmet	30
+--------------
+SELECT Customers.FirstName, Customers.LastName, Agents.FirstName , Agents.LastName FROM Customers, Agents WHERE Customers.City = Agents.City
+--------------
+
+FirstName	LastName	FirstName	LastName
+Barney	Rubble	Regis	Philbin
+Fred	Flintstone	Regis	Philbin
+Monty	Burns	Hugh	Grant
+Homer	Simpson	Hugh	Grant
+Sideshow	Bob	Hugh	Grant
+--------------
+SELECT SUM(Quantity) AS "Knee Pads Total Purchase" FROM Purchase WHERE ProductID = 78
+--------------
+
+Knee Pads Total Purchase
+7
+--------------
+SELECT Description FROM Products WHERE ProductID=(SELECT ProductID FROM Purchase GROUP By ProductID HAVING COUNT(ProductID) > 3)
+--------------
+
+Description
+Elbow pads
+--------------
+SELECT FirstName, LastName FROM Agents WHERE AgentID IN (SELECT AgentID FROM Customers WHERE CustomerID IN (SELECT CustomerID FROM Purchase WHERE ProductID = 78))
+--------------
+
+FirstName	LastName
+Regis	Philbin
+Rosie	ODonnell
