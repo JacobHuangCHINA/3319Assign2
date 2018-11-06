@@ -5,6 +5,7 @@ SELECT * FROM Customers;
 SELECT * FROM Products;
 SELECT * FROM Purchase;
 
+drop view if exists Customer_View ;
 -- create Views
 CREATE VIEW Customer_View AS
 SELECT Customers.FirstName, Customers.LastName, Products.Description, Products.Quantity, Products.Cost, Products.Quantity*Products.Cost AS TotalCost FROM Customers,Products,Purchase WHERE Purchase.ProductID = Products.ProductID AND Customers.CustomerID = Purchase.CustomerID ORDER BY Customers.LastName;
