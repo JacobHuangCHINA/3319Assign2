@@ -1,9 +1,6 @@
 Warning: Using a password on the command line interface can be insecure.
 ERROR 1064 (42000) at line 13: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show views
-SELECT * FROM Customer_View
-
---show spent more than 100
-SELECT * FR' at line 1
+SELECT * FROM Customer_View' at line 1
 --------------
 SELECT * FROM Agents
 --------------
@@ -68,8 +65,5 @@ SELECT Customers.FirstName, Customers.LastName, Products.Description, Products.Q
 --------------
 --show views
 SELECT * FROM Customer_View
-
---show spent more than 100
-SELECT * FROM Customer_View WHERE TotalCost > 100
 --------------
 
