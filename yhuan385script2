@@ -1,4 +1,4 @@
-LOAD DATA INFILE'loaddatafall2018.txt' INTO TABLE Product;
+LOAD DATA INFILE'loaddatafall2018.txt' INTO TABLE Products;
 
 USE Products
 
