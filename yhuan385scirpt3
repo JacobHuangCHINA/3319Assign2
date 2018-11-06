@@ -1,0 +1,45 @@
+-- Query1
+USE Products;
+SELECT description FROM Products；
+
+-- Query2
+SELECT DISTINCT City FROM Customers;
+
+-- Query3
+SELECT * FROM Agents ORDER BY City;
+
+-- Query4
+SELECT FirstName, LastName FROM Customers WHERE City = "Springfield";
+
+-- Query5
+SELECT LastName FROM Customers WHERE AgentID = 11;
+
+-- Query6
+SELECT Description FROM Products WHERE Description LIKE '%Pad%' OR Description LIKE '%pad';
+
+-- Query7
+SELECT LastName,Quantity FROM Customers,Purchase WHERE Customers.CustomerID = Purchase.CustomerID;
+
+-- Query8
+SELECT Quantity AS "Homer's Total Purchases" FROM Purchase WHERE CustomerID=(SELECT CustomerID FROM Customers WHERE FirstName='Homer');
+
+-- Query9
+SELECT FirstName, LastName, Quantity FROM Customers,Purchase WHERE (Customers.CustomerID = Purchase.CustomerID);
+
+-- Query10
+SELECT Description,Quantity FROM Products,Purchase WHERE NOT Products.ProductID = Purchase.ProductID;
+
+-- Query11
+SELECT Description,Quantity FROM Products WHERE ProductID=(SELECT ProductID FROM Purchase WHERE NOT CustomerID=(SELECT FirstName,LastName FROM Customers WHERE FirstName = 'Fred' AND LastName = 'Flintstone'));
+
+-- Query12
+SELECT Customers.FirstName, Customers.LastName FROM Customers INNER JOIN Agents ON Customers.AgentID = Agents.AgentID AND Customers.City = Agents.City;
+
+-- Query13
+SELECT SUM(Quantity) AS "Knee Pads Total Purchase" FROM Purchase WHERE ProductID = 78;
+
+-- Query14
+SELECT COUNT(Description) FROM Purchase GROUP By Description HAVING COUNT(Description) > 1;
+
+-- Query15
+SELECT FirstName, LastName FROM Agents WHERE AgentID=(SELECT AgentID FROM Customers WHERE CustomerID=(SELECT CustomerID FROM Purchase WHERE ProductID = 78));

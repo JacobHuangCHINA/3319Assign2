@@ -1,0 +1,7 @@
+SELECT * FROM Agents;
+SELECT * FROM Customers;
+SELECT * FROM Products;
+SELECT * FROM Purchase;
+
+CREATE VIEW Customer_View AS
+SELECT FirstName, LastName, Description, Quantity, Cost
