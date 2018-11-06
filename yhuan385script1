@@ -13,7 +13,7 @@ SHOW tables;
 
 CREATE TABLE Agents (AgentID int not null, FirstName VARCHAR(30), LastName VARCHAR(30), City VARCHAR(15), Commission int, PRIMARY KEY (AgentID));
 
-CREATE TABLE Customers (CustomerID int not null, FirstName VARCHAR(30), LastName VARCHAR(30), City VARCHAR(15), PhoneNum VARCHAR(8), PRIMARY KEY (CustomerID) FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE RESTRICT);
+CREATE TABLE Customers (CustomerID int not null, FirstName VARCHAR(30), LastName VARCHAR(30), City VARCHAR(15), PhoneNum VARCHAR(8), PRIMARY KEY (CustomerID),AgentID int,FOREIGN KEY (AgentID) REFERENCES Agents(AgentID) ON DELETE RESTRICT);
 
 CREATE TABLE Products (ProductID int not null, Description VARCHAR(20), Cost FLOAT, Quantity int,PRIMARY KEY (ProductID));
 
