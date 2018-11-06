@@ -1,6 +1,2 @@
 Warning: Using a password on the command line interface can be insecure.
-ERROR 1046 (3D000) at line 2: No database selected
---------------
-SELECT * FROM Agents
---------------
-
+ERROR 1049 (42000) at line 1: Unknown database 'yhaun385assign2db'
